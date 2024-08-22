@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดการแจ้งซ่อม</title>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #6A5ACD; /* สีม่วง */
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #6A5ACD; /* สีม่วง */
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #5a4fbf; /* สีม่วงเข้ม */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .submit-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #6A5ACD; /* สีม่วง */
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #5a4fbf; /* สีม่วงเข้ม */
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+            color: #333;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .back-btn:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>รายละเอียดการแจ้งซ่อม</h1>
+        <form action="/update-repair/<%= repair.id %>" method="POST">
+            <div class="form-group">
+                <label for="location">ตำแหน่งที่ต้องการซ่อม:</label>
+                <input type="text" id="location" name="location" value="<%= repair.location %>" required>
+            </div>
+            <div class="form-group">
+                <label for="description">รายละเอียดของปัญหา:</label>
+                <textarea id="description" name="description" required><%= repair.description %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="username">ผู้แจ้ง:</label>
+                <input type="text" id="username" name="username" value="<%= repair.username %>" disabled>
+            </div>
+            <div class="form-group">
+                <label for="created_at">วันที่แจ้ง:</label>
+                <input type="text" id="created_at" name="created_at" value="<%= new Date(repair.created_at).toLocaleDateString('th-TH') %>" disabled>
+            </div>
+            <button type="submit" class="submit-btn">บันทึกการเปลี่ยนแปลง</button>
+        </form>
+        <a href="/repair-list" class="back-btn">กลับไปยังรายการ</a>
+    </div>
+</body>
+</html>
