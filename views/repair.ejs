@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แจ้งจุดซ่อม</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #6A5ACD; /* สีม่วง */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #6A5ACD; /* สีม่วง */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #5a4fbf; /* สีม่วงเข้ม */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>แจ้งจุดซ่อม</h1>
+        <form action="/repair" method="POST">
+            <label for="location">ตำแหน่งที่ต้องการซ่อม:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="description">รายละเอียดของปัญหา:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <button type="submit">ส่งการแจ้งซ่อม</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('repair-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            fetch('/repair', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // แสดงข้อความแจ้งเตือนที่ประสบความสำเร็จ
+                    alert(data.message);
+                    // เปลี่ยนเส้นทางไปยัง /repair-list
+                    window.location.href = '/repair-list';
+                } else {
+                    // แสดงข้อความแจ้งเตือนที่เกิดข้อผิดพลาด
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('เกิดข้อผิดพลาดในการส่งคำขอซ่อม');
+            });
+        });
+    </script>
+</body>
+</html>
