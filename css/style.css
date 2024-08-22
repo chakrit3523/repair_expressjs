@@ -1,0 +1,151 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-top: 1rem;
+}
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+}
+#messages li {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #f3f3f3;
+    position: relative;
+}
+#messages .username {
+    font-weight: bold;
+    margin-right: 5px;
+}
+#messages .message {
+    display: inline;
+}
+#form {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+#input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+/* Styles for the Navbar */
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar-brand {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #d3d3d3 !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16"><path d="M1.5 4.5A.5.5 0 0 1 2 4h12a.5.5 0 0 1 .5.5v1A.5.5 0 0 1 14 6H2a.5.5 0 0 1-.5-.5v-1zM14 8H2a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 2 6h12a.5.5 0 0 1 .5.5v1A.5.5 0 0 1 14 8zM14 12H2a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 2 10h12a.5.5 0 0 1 .5.5v1A.5.5 0 0 1 14 12z"/></svg>');
+}
