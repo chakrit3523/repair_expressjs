@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="/images/logo.png" class="logo" alt="Logo">
+            <h2>สมัครสมาชิก</h2>
+            <% if (message) { %>
+                <p class="error"><%= message %></p>
+            <% } %>
+            <form action="/register" method="POST">
+                <div class="input-group">
+                    <label for="username">ชื่อผู้ใช้</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">รหัสผ่าน</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+                <button type="submit" class="btn">สมัครสมาชิก</button>
+            </form>
+            <p>มีบัญชีแล้ว? <a href="/">เข้าสู่ระบบ</a></p>
+        </div>
+    </div>
+</body>
+</html>

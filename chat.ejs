@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Chat Room</title>
+    <style>
+        /* Body styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Chat container styles */
+        #chat-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Header styles */
+        h2 {
+            background-color: #6A5ACD; /* สีม่วง */
+            color: #fff;
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Message list styles */
+        #messages {
+            list-style: none;
+            padding: 15px;
+            overflow-y: auto;
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #messages li {
+            margin-bottom: 10px;
+        }
+
+        .username {
+            font-weight: bold;
+            color: #6A5ACD; /* สีม่วง */
+        }
+
+        .message {
+            color: #333;
+        }
+
+        /* Form styles */
+        form {
+            display: flex;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        #input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #6A5ACD; /* สีม่วง */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #5a4fbf; /* สีม่วงเข้ม */
+        }
+
+        /* Floating button styles */
+        .float-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #6A5ACD; /* สีม่วง */
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .float-btn:hover {
+            background-color: #5a4fbf; /* สีม่วงเข้ม */
+        }
+
+        @media (max-width: 768px) {
+            #chat-container {
+                height: 90vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <a href="/dashboard" class="float-btn">สมัครสมาชิก</a>
+        <h2>Chat Room</h2>
+        <ul id="messages"></ul>
+        <form id="form" action="">
+            <input id="input" autocomplete="off" placeholder="Type a message..." />
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var form = document.getElementById('form');
+        var input = document.getElementById('input');
+        var messages = document.getElementById('messages');
+
+        var username = '<%= username %>'; 
+
+        socket.emit('get username', username);
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            if (input.value) {
+                socket.emit('chat message', input.value);
+                input.value = '';
+            }
+        });
+
+        socket.on('chat message', function(data) {
+            var item = document.createElement('li');
+            item.innerHTML = '<span class="username">' + data.user + ':</span> <span class="message">' + data.text + '</span>';
+            messages.appendChild(item);
+            messages.scrollTop = messages.scrollHeight; 
+        });
+    </script>
+</body>
+</html>
